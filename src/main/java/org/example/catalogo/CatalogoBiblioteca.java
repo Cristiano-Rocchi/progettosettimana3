@@ -35,6 +35,15 @@ public class CatalogoBiblioteca {
         return risultati;
     }
 
+    public List<ElementoCatalogo> cercaPerAutore(String autore) {
+        List<ElementoCatalogo> risultati = new ArrayList<>();
+        for (ElementoCatalogo elemento : catalogo) {
+            if (elemento instanceof Libro && ((Libro) elemento).getAutore().equals(autore)) {
+                risultati.add(elemento);
+            }
+        }
+        return risultati;
+    }
 
     @Override
     public String toString() {
