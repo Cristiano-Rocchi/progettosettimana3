@@ -18,14 +18,14 @@ public class CatalogoBiblioteca {
         catalogo.removeIf(elemento -> elemento.getCodiceISBN().equals(codiceISBN));
     }
 
-    public ElementoCatalogo cercaPerISBN(String codiceISBN) {
+    public ElementoCatalogo cercaISBN(String codiceISBN) {
         return catalogo.stream()
                 .filter(elemento -> elemento.getCodiceISBN().equals(codiceISBN))
                 .findFirst()
                 .orElse(null);
     }
 
-    public List<ElementoCatalogo> cercaPerAnno(int annoPubblicazione) {
+    public List<ElementoCatalogo> cercaAnno(int annoPubblicazione) {
         List<ElementoCatalogo> risultati = new ArrayList<>();
         for (ElementoCatalogo elemento : catalogo) {
             if (elemento.getAnnoPubblicazione() == annoPubblicazione) {
@@ -35,7 +35,7 @@ public class CatalogoBiblioteca {
         return risultati;
     }
 
-    public List<ElementoCatalogo> cercaPerAutore(String autore) {
+    public List<ElementoCatalogo> cercaAutore(String autore) {
         List<ElementoCatalogo> risultati = new ArrayList<>();
         for (ElementoCatalogo elemento : catalogo) {
             if (elemento instanceof Libro && ((Libro) elemento).getAutore().equals(autore)) {
