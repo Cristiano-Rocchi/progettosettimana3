@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>it.biblioteca</groupId>
-    <artifactId>mia-biblioteca-catalogo</artifactId>
+    <groupId>CristianoRocchi</groupId>
+    <artifactId>progettosettimana3</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

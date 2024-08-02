@@ -1,4 +1,4 @@
-package CristianoRocchi;
+package org.example.catalogo;
 
 import org.junit.jupiter.api.Test;
 
