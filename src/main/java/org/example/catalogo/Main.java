@@ -17,8 +17,7 @@ public class Main {
             System.out.println("4. Cerca per autore");
             System.out.println("5. Esci");
 
-            int scelta = scanner.nextInt();
-            scanner.nextLine();
+            int scelta = leggiNumero(1, 5);
 
             switch (scelta) {
                 case 1:
@@ -28,16 +27,14 @@ public class Main {
                     rimuoviElemento();
                     break;
                 case 3:
-                    cercaAnno();
+                    cercaPerAnno();
                     break;
                 case 4:
-                    cercaAutore();
+                    cercaPerAutore();
                     break;
                 case 5:
                     exit = true;
                     break;
-                default:
-                    System.out.println("Scelta non valida, riprova.");
             }
         }
     }
@@ -47,8 +44,7 @@ public class Main {
         System.out.println("1. Libro");
         System.out.println("2. Rivista");
 
-        int scelta = scanner.nextInt();
-        scanner.nextLine();
+        int scelta = leggiNumero(1, 2);
 
         System.out.print("Codice ISBN: ");
         String codiceISBN = scanner.nextLine();
@@ -57,11 +53,10 @@ public class Main {
         String titolo = scanner.nextLine();
 
         System.out.print("Anno di pubblicazione: ");
-        int annoPubblicazione = scanner.nextInt();
+        int annoPubblicazione = leggiIntero();
 
         System.out.print("Numero di pagine: ");
-        int numeroPagine = scanner.nextInt();
-        scanner.nextLine();
+        int numeroPagine = leggiIntero();
 
         switch (scelta) {
             case 1:
@@ -77,8 +72,7 @@ public class Main {
                 break;
             case 2:
                 System.out.println("Periodicità (1: SETTIMANALE, 2: MENSILE, 3: SEMESTRALE): ");
-                int periodicitaScelta = scanner.nextInt();
-                scanner.nextLine();
+                int periodicitaScelta = leggiNumero(1, 3);
 
                 org.example.catalogo.Rivista.Periodicita periodicita;
                 switch (periodicitaScelta) {
@@ -113,10 +107,9 @@ public class Main {
         System.out.println("Elemento rimosso (se esistente).");
     }
 
-    private static void cercaAnno() {
+    private static void cercaPerAnno() {
         System.out.print("Inserisci l'anno di pubblicazione: ");
-        int annoPubblicazione = scanner.nextInt();
-        scanner.nextLine();  // Consuma la newline
+        int annoPubblicazione = leggiIntero();
 
         List<ElementoCatalogo> risultati = catalogo.cercaAnno(annoPubblicazione);
         if (risultati.isEmpty()) {
@@ -129,7 +122,7 @@ public class Main {
         }
     }
 
-    private static void cercaAutore() {
+    private static void cercaPerAutore() {
         System.out.print("Inserisci il nome dell'autore: ");
         String autore = scanner.nextLine();
 
@@ -140,6 +133,31 @@ public class Main {
             System.out.println("Elementi trovati:");
             for (ElementoCatalogo elemento : risultati) {
                 System.out.println(elemento);
+            }
+        }
+    }
+
+    private static int leggiIntero() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido. Per favore, inserisci un numero intero.");
+            }
+        }
+    }
+
+    private static int leggiNumero(int min, int max) {
+        while (true) {
+            try {
+                int valore = Integer.parseInt(scanner.nextLine());
+                if (valore >= min && valore <= max) {
+                    return valore;
+                } else {
+                    System.out.println("Numero non valido. Per favore, inserisci un numero tra " + min + " e " + max + ".");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido. Per favore, inserisci un numero intero.");
             }
         }
     }
